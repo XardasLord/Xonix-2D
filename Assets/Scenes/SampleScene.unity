@@ -10466,7 +10466,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.75
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -10543,6 +10543,9 @@ MonoBehaviour:
   layerToDrawLine:
     serializedVersion: 2
     m_Bits: 128
+  openGameAreaTileMap: {fileID: 1064761566}
+  closeGameAreaTileMap: {fileID: 1942576786}
+  closeTile: {fileID: 11400000, guid: bdc1d94080c865a46b53b0878b6f7762, type: 2}
 --- !u!1 &1434693774
 GameObject:
   m_ObjectHideFlags: 0
@@ -10620,7 +10623,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1434693774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 8.5, z: 0}
+  m_LocalPosition: {x: 0.5, y: 10.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 266342605}
