@@ -12,8 +12,8 @@ TagManager:
   - Water
   - UI
   - Game Area Border
-  - 
-  - 
+  - Open Game Area
+  - Close Game Area
   - 
   - 
   - 
@@ -40,4 +40,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 3669537093
     locked: 0
