@@ -51,7 +51,7 @@ namespace Player
             {
                 SwapOpenTilesToCloseTiles();
                 
-                // We can here recalculate percentage of closed tiles
+                // TODO: We can here recalculate percentage of closed tiles, move it to separate dedicated class for UI
                 Debug.Log(CalculatePercentageOfClosedTiles() + "%");
 
                 _moveLinePoints.Clear();
@@ -74,7 +74,6 @@ namespace Player
                 closeGameAreaTileMap.SetTile(pos, closeTile);
             }
 
-            // TODO: Apply Flood Fill Algorithm here depends on split areas
             var openTileAreas = openGameAreaTileMap.GetTileAreas();
 
             var smallestArea = new List<Vector3Int>();
@@ -83,9 +82,11 @@ namespace Player
                 if (!smallestArea.Any() || smallestArea.Count > openTileArea.Count)
                     smallestArea = openTileArea;
             }
-            
+
             openGameAreaTileMap.FloodFill(smallestArea.First(), null);
             closeGameAreaTileMap.FloodFill(smallestArea.First(), closeTile);
+            
+            openGameAreaTileMap.CompressBounds();
         }
 
         private void AssignDrawingPoints()

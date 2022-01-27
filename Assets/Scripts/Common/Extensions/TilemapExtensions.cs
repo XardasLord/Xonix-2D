@@ -63,7 +63,8 @@ namespace Common.Extensions
                         }
                         else if (!tilemap.HasTile(currentTile))
                         {
-                            visit.Remove(currentTile);
+                            visit.Remove(currentTile); // The problem was here, we omit the iteration because list index elements changes here
+                            z -= 1; // Thus we had to recalculate the helper value because of this change on the list above
                         }
                     }
                 }
