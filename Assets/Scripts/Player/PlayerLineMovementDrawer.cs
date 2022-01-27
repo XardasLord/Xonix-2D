@@ -63,23 +63,29 @@ namespace Player
 
         private void SwapOpenTilesToCloseTiles()
         {
-            // TODO: Calculate all tiles to replace, not just a lines (Flood Fill Algorithm)
-            var positionsToSwap = _moveLinePoints
+            var playerMovementPositionsToSwap = _moveLinePoints
                 .Select(Vector3Int.FloorToInt)
                 .Distinct()
                 .ToArray();
-            
-            // SetTiles() not working... ???
 
-            foreach (var pos in positionsToSwap)
+            foreach (var pos in playerMovementPositionsToSwap)
             {
                 openGameAreaTileMap.SetTile(pos, null);
                 closeGameAreaTileMap.SetTile(pos, closeTile);
             }
 
-            openGameAreaTileMap.CompressBounds();
+            // TODO: Apply Flood Fill Algorithm here depends on split areas
+            var openTileAreas = openGameAreaTileMap.GetTileAreas();
 
-            // TODO: Apply Flood Fill Algorithm here
+            var smallestArea = new List<Vector3Int>();
+            foreach (var openTileArea in openTileAreas)
+            {
+                if (!smallestArea.Any() || smallestArea.Count > openTileArea.Count)
+                    smallestArea = openTileArea;
+            }
+            
+            openGameAreaTileMap.FloodFill(smallestArea.First(), null);
+            closeGameAreaTileMap.FloodFill(smallestArea.First(), closeTile);
         }
 
         private void AssignDrawingPoints()
