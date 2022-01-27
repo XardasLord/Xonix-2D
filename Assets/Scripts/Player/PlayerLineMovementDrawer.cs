@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Common.Extensions;
+using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -15,18 +16,18 @@ namespace Player
         [SerializeField] private Tilemap openGameAreaTileMap;
         [SerializeField] private Tilemap closeGameAreaTileMap;
         [SerializeField] private Tile closeTile;
+
+        [Header("Events")] 
+        [SerializeField] private VoidEvent gameAreaClosedEvent;
         
         private LineRenderer _lineRenderer;
         private List<Vector3> _moveLinePoints;
         private bool _isDrawing;
-        private int _numberOfOpenTilesAtStart;
 
         private void Awake()
         {
             _lineRenderer = GetComponent<LineRenderer>();
             _moveLinePoints = new List<Vector3>();
-            _numberOfOpenTilesAtStart = openGameAreaTileMap.CountActiveTiles();
-            Debug.Log(_numberOfOpenTilesAtStart);
         }
 
         private void Update()
@@ -50,8 +51,7 @@ namespace Player
             {
                 SwapOpenTilesToCloseTiles();
                 
-                // TODO: We can here recalculate percentage of closed tiles, move it to separate dedicated class for UI
-                Debug.Log(CalculatePercentageOfClosedTiles() + "%");
+                gameAreaClosedEvent.Raise();
 
                 _moveLinePoints.Clear();
                 AssignDrawingPoints();
@@ -92,13 +92,6 @@ namespace Player
         {
             _lineRenderer.positionCount = _moveLinePoints.Count;
             _lineRenderer.SetPositions(_moveLinePoints.ToArray());
-        }
-
-        private int CalculatePercentageOfClosedTiles()
-        {
-            var currentOpenTilesCount = openGameAreaTileMap.CountActiveTiles();
-
-            return 100 - currentOpenTilesCount * 100 / _numberOfOpenTilesAtStart;
         }
     }
 }

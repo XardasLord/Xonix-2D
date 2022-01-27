@@ -241,9 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPosition: {fileID: 4010585916625791617}
-  layerToDrawLine:
-    serializedVersion: 2
-    m_Bits: 128
   openGameAreaTileMap: {fileID: 0}
   closeGameAreaTileMap: {fileID: 0}
   closeTile: {fileID: 11400000, guid: bdc1d94080c865a46b53b0878b6f7762, type: 2}
+  gameAreaClosedEvent: {fileID: 11400000, guid: 2f0b44a85c91a0448ac6ccfd1cf9ec1f, type: 2}
