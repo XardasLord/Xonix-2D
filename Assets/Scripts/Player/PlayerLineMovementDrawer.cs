@@ -10,8 +10,7 @@ namespace Player
     public class PlayerLineMovementDrawer : MonoBehaviour
     {
         [SerializeField] private Transform playerPosition;
-        [SerializeField] private LayerMask layerToDrawLine;
-        
+
         [Header("Tiles")]
         [SerializeField] private Tilemap openGameAreaTileMap;
         [SerializeField] private Tilemap closeGameAreaTileMap;
@@ -40,7 +39,7 @@ namespace Player
             if (_moveLinePoints.Any() && _moveLinePoints.Last() == playerPosition.position)
                 return;
 
-            if (Physics2D.OverlapCircle(playerPosition.position, .2f, layerToDrawLine))
+            if (openGameAreaTileMap.HasTile(Vector3Int.FloorToInt(transform.position)))
             {
                 _moveLinePoints.Add(playerPosition.position);
                 AssignDrawingPoints();
