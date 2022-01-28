@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Common.Extensions;
+using Enemy;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -79,11 +80,27 @@ namespace Player
             foreach (var openTileArea in openTileAreas)
             {
                 if (!smallestArea.Any() || smallestArea.Count > openTileArea.Count)
-                    smallestArea = openTileArea;
+                {
+                    // If any enemy is in this area then continue
+                    var enemies = FindObjectsOfType<EnemyMovement>();
+                    var enemyExistInArea = enemies.Any(x =>
+                    {
+                        var currentEnemyPosition = Vector3Int.FloorToInt(x.transform.position);
+
+                        return openTileArea.Any(tile => tile == currentEnemyPosition);
+                    });
+                    if (!enemyExistInArea)
+                    {
+                        smallestArea = openTileArea;
+                    }
+                }
             }
 
-            openGameAreaTileMap.FloodFill(smallestArea.First(), null);
-            closeGameAreaTileMap.FloodFill(smallestArea.First(), closeTile);
+            if (smallestArea.Any())
+            {
+                openGameAreaTileMap.FloodFill(smallestArea.First(), null);
+                closeGameAreaTileMap.FloodFill(smallestArea.First(), closeTile);
+            }
             
             openGameAreaTileMap.CompressBounds();
         }
