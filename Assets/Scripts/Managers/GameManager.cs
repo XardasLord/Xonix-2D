@@ -6,6 +6,7 @@ namespace Managers
 {
     public class GameManager : MonoBehaviour
     {
+        [Header("Events")]
         [SerializeField] private IntEvent levelChangedEvent; 
         
         private static GameManager instance;

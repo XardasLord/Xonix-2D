@@ -9,9 +9,11 @@ namespace UI
     public class UIScoreManager : MonoBehaviour
     {
         [SerializeField] private Tilemap openGameAreaTileMap;
+        
+        [Header("UI Texts")] 
         [SerializeField] private TextMeshProUGUI percentageTextValue;
         [SerializeField] private TextMeshProUGUI levelTextValue;
-
+        
         [Header("Events")] 
         [SerializeField] private IntEvent percentageChangedEvent;
         
@@ -20,7 +22,7 @@ namespace UI
         private void Start()
         {
             _numberOfOpenTilesAtStart = openGameAreaTileMap.CountActiveTiles();
-            percentageTextValue.text = string.Empty;
+            percentageTextValue.text = "0%";
         }
 
         public void SetScore()

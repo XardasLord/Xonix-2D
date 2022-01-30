@@ -6,7 +6,7 @@ namespace Enemy
     [RequireComponent(typeof(Rigidbody2D))]
     public class EnemyMovement : MonoBehaviour
     {
-        [SerializeField] private Tilemap gameAreaTilemap;
+        // [SerializeField] private Tilemap gameAreaTilemap;
         [Range(1f, 10f)] [SerializeField] private float moveSpeed = 5f;
         
         private const float HelperForceMultiplier = 100f;
@@ -20,19 +20,19 @@ namespace Enemy
 
         private void Start()
         {
-            SetStartPosition();
+            // SetStartPosition();
             AddRandomMoveForce();
         }
 
-        private void SetStartPosition()
-        {
-            var gameAreaBoundaries = gameAreaTilemap.cellBounds;
-        
-            var randX = Random.Range(gameAreaBoundaries.xMin, gameAreaBoundaries.xMax);
-            var randY = Random.Range(gameAreaBoundaries.yMin, gameAreaBoundaries.yMax);
-
-            transform.position = new Vector2(randX, randY);
-        }
+        // private void SetStartPosition()
+        // {
+        //     var gameAreaBoundaries = gameAreaTilemap.cellBounds;
+        //
+        //     var randX = Random.Range(gameAreaBoundaries.xMin, gameAreaBoundaries.xMax);
+        //     var randY = Random.Range(gameAreaBoundaries.yMin, gameAreaBoundaries.yMax);
+        //
+        //     transform.position = new Vector2(randX, randY);
+        // }
 
         private void AddRandomMoveForce()
         {
