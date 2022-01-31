@@ -8,7 +8,6 @@ using UnityEngine.Tilemaps;
 
 namespace Player
 {
-    [RequireComponent(typeof(LineRenderer))]
     public class PlayerLineMovementDrawer : MonoBehaviour
     {
         [SerializeField] private Transform playerPosition;
@@ -22,12 +21,14 @@ namespace Player
         [SerializeField] private VoidEvent gameAreaClosedEvent;
         
         private LineRenderer _lineRenderer;
+        private EdgeCollider2D _edgeCollider;
         private List<Vector3> _moveLinePoints;
         private bool _isDrawing;
 
         private void Awake()
         {
             _lineRenderer = GetComponent<LineRenderer>();
+            _edgeCollider = GetComponent<EdgeCollider2D>();
             _moveLinePoints = new List<Vector3>();
         }
 
@@ -41,10 +42,11 @@ namespace Player
             if (_moveLinePoints.Any() && _moveLinePoints.Last() == playerPosition.position)
                 return;
 
-            if (openGameAreaTileMap.HasTile(Vector3Int.FloorToInt(transform.position)))
+            if (openGameAreaTileMap.HasTile(Vector3Int.FloorToInt(playerPosition.position)))
             {
                 _moveLinePoints.Add(playerPosition.position);
-                AssignDrawingPoints();
+                DrawLineForPoints();
+                SetLineCollider();
                 
                 _isDrawing = true;
             }
@@ -55,7 +57,8 @@ namespace Player
                 gameAreaClosedEvent.Raise();
 
                 _moveLinePoints.Clear();
-                AssignDrawingPoints();
+                DrawLineForPoints();
+                SetLineCollider();
                 
                 _isDrawing = false;
             }
@@ -105,10 +108,24 @@ namespace Player
             openGameAreaTileMap.CompressBounds();
         }
 
-        private void AssignDrawingPoints()
+        private void DrawLineForPoints()
         {
             _lineRenderer.positionCount = _moveLinePoints.Count;
             _lineRenderer.SetPositions(_moveLinePoints.ToArray());
+        }
+
+        private void SetLineCollider()
+        {
+            var playerPos = playerPosition.position;
+            
+            var vector2Points = _moveLinePoints
+                .Select(point => new Vector2(point.x - playerPos.x, point.y - playerPos.y))
+                .ToList();
+            
+            if (vector2Points.Any())
+                _edgeCollider.SetPoints(vector2Points);
+            else
+                _edgeCollider.Reset();
         }
     }
 }
