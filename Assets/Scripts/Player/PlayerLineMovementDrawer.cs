@@ -24,6 +24,7 @@ namespace Player
         private EdgeCollider2D _edgeCollider;
         private List<Vector3> _moveLinePoints;
         private bool _isDrawing;
+        private bool _enemyBrokeLine;
 
         private void Awake()
         {
@@ -37,10 +38,27 @@ namespace Player
             DrawMovementLine();
         }
 
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            if (col.GetComponent<EnemyMovement>() is null)
+                return;
+
+            _enemyBrokeLine = true;
+            _isDrawing = false;
+            _moveLinePoints.Clear();
+            DrawLineForPoints();
+            SetLineCollider();
+        }
+
         private void DrawMovementLine()
         {
             if (_moveLinePoints.Any() && _moveLinePoints.Last() == playerPosition.position)
                 return;
+            
+            if (_enemyBrokeLine && openGameAreaTileMap.HasTile(Vector3Int.FloorToInt(playerPosition.position)))
+                return;
+            
+            _enemyBrokeLine = false;
 
             if (openGameAreaTileMap.HasTile(Vector3Int.FloorToInt(playerPosition.position)))
             {
