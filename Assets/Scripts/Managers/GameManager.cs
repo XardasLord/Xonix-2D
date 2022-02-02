@@ -12,7 +12,7 @@ namespace Managers
         [Header("Events")]
         [SerializeField] private IntEvent levelChangedEvent;
 
-        [SerializeField] private TextMeshProUGUI nextLevelText;
+        [SerializeField] private TextMeshProUGUI centerWindowText;
         
         private static GameManager _instance;
         
@@ -42,17 +42,25 @@ namespace Managers
             if (_nextLevelPercentageValue > MaxNextLevelPercentageValue)
                 _nextLevelPercentageValue = MaxNextLevelPercentageValue;
             
-            nextLevelText ??= FindObjectsOfType<TextMeshProUGUI>().Single(x => x.name == "NextLevelText");
-            nextLevelText.text = string.Empty;
+            centerWindowText ??= FindObjectsOfType<TextMeshProUGUI>().Single(x => x.name == "NextLevelText");
+            centerWindowText.text = string.Empty;
         }
 
         public void ScoreChanged(int filledPercentage)
         {
             if (filledPercentage > _nextLevelPercentageValue)
             {
-                nextLevelText.text = "Prepare for the next level...";
+                centerWindowText.text = "Prepare for the next level...";
                 StartCoroutine(LoadLevelAfterDelay(2f));
             }
+        }
+
+        public void ResetGame()
+        {
+            centerWindowText.text = "GAME OVER !";
+            centerWindowText.color = Color.red;
+            _levelNumber = 0;
+            StartCoroutine(LoadLevelAfterDelay(2f));
         }
  
         private IEnumerator LoadLevelAfterDelay(float delay)

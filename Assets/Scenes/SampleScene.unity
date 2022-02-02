@@ -761,6 +761,7 @@ GameObject:
   - component: {fileID: 1583190753}
   - component: {fileID: 1583190752}
   - component: {fileID: 1583190754}
+  - component: {fileID: 1583190755}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -834,7 +835,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelChangedEvent: {fileID: 11400000, guid: 3c8113cad15f4fb498237448785c4c7f, type: 2}
-  nextLevelText: {fileID: 1291389851}
+  centerWindowText: {fileID: 0}
+--- !u!114 &1583190755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583190751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2458933140c54c9db0aec7a69c1b617, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _developerDescription: Event handles when player is dead. This will force to reset
+    the game.
+  _unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1583190754}
+        m_TargetAssemblyTypeName: Managers.GameManager, Assembly-CSharp
+        m_MethodName: ResetGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _actionResponses: []
+  _conditions: []
+  _operator: 0
+  _replayEventBufferOnRegister: 0
+  _eventReference:
+    _usage: 0
+    _event: {fileID: 11400000, guid: 79b49b2ef19e8b5468eacef916f4f46d, type: 2}
+    _eventInstancer: {fileID: 0}
+    _collection: {fileID: 0}
+    _list: {fileID: 0}
+    _collectionInstancer: {fileID: 0}
+    _listInstancer: {fileID: 0}
 --- !u!1 &1798166081
 GameObject:
   m_ObjectHideFlags: 0
@@ -969,7 +1011,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1798166081}
   m_CullTransparentMesh: 1
---- !u!1001 &1911463990
+--- !u!1001 &1915064649
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -998,15 +1040,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4010585916625791617, guid: 2a1821fecb9d4d54088c8a7ed8b20af6, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4010585916625791617, guid: 2a1821fecb9d4d54088c8a7ed8b20af6, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4010585916625791617, guid: 2a1821fecb9d4d54088c8a7ed8b20af6, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4010585916625791617, guid: 2a1821fecb9d4d54088c8a7ed8b20af6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1023,14 +1065,6 @@ PrefabInstance:
     - target: {fileID: 4010585916625791647, guid: 2a1821fecb9d4d54088c8a7ed8b20af6, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4010585917009192074, guid: 2a1821fecb9d4d54088c8a7ed8b20af6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4010585917009192074, guid: 2a1821fecb9d4d54088c8a7ed8b20af6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -10.5
       objectReference: {fileID: 0}
     - target: {fileID: 4010585917009192077, guid: 2a1821fecb9d4d54088c8a7ed8b20af6, type: 3}
       propertyPath: openGameAreaTileMap
