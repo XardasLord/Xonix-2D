@@ -143,7 +143,7 @@ namespace Player
             if (vector2Points.Any())
                 _edgeCollider.SetPoints(vector2Points);
             else
-                _edgeCollider.Reset();
+                _edgeCollider.SetPoints(new List<Vector2>());
         }
     }
 }
