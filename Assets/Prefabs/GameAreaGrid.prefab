@@ -2969,7 +2969,6 @@ GameObject:
   - component: {fileID: 7136290364872480929}
   - component: {fileID: 7136290364872480931}
   - component: {fileID: 7136290364872480928}
-  - component: {fileID: 7136290364872480930}
   m_Layer: 7
   m_Name: OpenGameArea
   m_TagString: Untagged
@@ -11501,22 +11500,6 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!19719996 &7136290364872480930
-TilemapCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7136290364872480934}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_MaximumTileChangeCount: 1000
-  m_ExtrusionFactor: 0.00001
 --- !u!1 &7136290364896179580
 GameObject:
   m_ObjectHideFlags: 0

@@ -378,7 +378,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -171.23671, y: 16.1708}
+  m_AnchoredPosition: {x: -171.23671, y: 16.170776}
   m_SizeDelta: {x: 31.1266, y: 22.4584}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &844373597
@@ -1389,10 +1389,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7136290364872480930, guid: f748c30ece94b8041a6d4ef17ef9ba1f, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7136290364896179580, guid: f748c30ece94b8041a6d4ef17ef9ba1f, type: 3}
       propertyPath: m_Name
       value: GameAreaGrid
